@@ -1,0 +1,25 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+RewriteRule ^users$ ?page=users [L]
+RewriteRule ^home$ ?page=home [L]
+
+#example rewrite
+#RewriteRule ^like$ ajax/like_ajax.php?page=like&userid=$1&liketype=$2 [QSA]
+#RewriteRule ^user/([0-9]+)$ ?page=user&id=$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+
+<files ~ "\.templates$">
+order deny,allow
+allow from none
+deny from all
+</files>
+
+
